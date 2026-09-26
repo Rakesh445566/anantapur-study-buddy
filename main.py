@@ -1,6 +1,6 @@
 import requests
 
-BOT_TOKEN = 8557258154:AAHNcziTdnx2IeM7IdRnZXRwS8kSoJkL8ZY
+BOT_TOKEN = "8557258154:AAHNcziTdnx2IeM7IdRnZXRwS8kSoJkL8ZY"
 CHANNEL = "@AnantapurStudyBuddy"
 
 message = """📚 *Anantapur Study Buddy - Daily Current Affairs*
