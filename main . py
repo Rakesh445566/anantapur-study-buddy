@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 
-BOT_TOKEN = "8557258154:AAH0fUj5z5yG8JzZJ8v8qXxXxXxXxXxXxX"
+BOT_TOKEN = 8557258154:AAHNcziTdnx2IeM7IdRnZXRwS8kSoJkL8ZY
 CHANNEL = "@AnantapurStudyBuddy"
 
 def get_affairs():
