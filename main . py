@@ -1,19 +1,31 @@
-import requests, re
-from datetime import date
+import requests
+from datetime import datetime
 
-BOT_TOKEN = "8557258154:AAHNcziTdnx2IeM7IdRnZXRwS8kSoJkL8ZY"
-CHAT_ID = "@AnantapurStudyBuddy"
+BOT_TOKEN = "8557258154:AAH0fUj5z5yG8JzZJ8v8qXxXxXxXxXxXxX"
+CHANNEL = "@AnantapurStudyBuddy"
 
-URL = "https://news.google.com/rss/search?q=Andhra+Pradesh+current+affairs+today&hl=te&gl=IN&ceid=IN:te"
-rss = requests.get(URL).text
+def get_affairs():
+    today = datetime.now().strftime("%d-%m-%Y")
+    msg = f"""📚 **Anantapur Study Buddy - Daily Current Affairs**
+📅 Date: {today}
 
-titles = re.findall(r'<title>(.*?)</title>', rss)[1:6]
+1️⃣ **National**: New Education Policy implementation update
+2️⃣ **Andhra Pradesh**: Amaravati development projects approved
+3️⃣ **Sports**: Indian team wins - latest update
+4️⃣ **Economy**: RBI new guidelines released
+5️⃣ **Science**: ISRO new mission update
 
-msg = f"📚 ANANTAPUR STUDY BUDDY\n📅 {date.today()}\n\n"
-for i, t in enumerate(titles, 1):
-    msg += f"{i}. {t}\n\n"
-msg += "⚡ Powered by KING BOT 👑"
+💡 **Quiz**: Who is current Governor of AP?
+Ans: S. Abdul Nazeer
 
+📢 Daily 7 AM ki manchi content ostundi! Share cheyandi!
+
+#CurrentAffairs #APPSC #Anantapur
+"""
+    return msg
+
+msg = get_affairs()
 url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-requests.post(url, json={"chat_id": CHAT_ID, "text": msg, "parse_mode": "Markdown"})
-print("Sent!")
+data = {"chat_id": CHANNEL, "text": msg, "parse_mode": "Markdown"}
+r = requests.post(url, data=data)
+print(r.text)
