@@ -1,25 +1,31 @@
+import os
 import requests
+import datetime
 
+BOT_TOKEN = os.environ["BOT_TOKEN"]
 CHANNEL = "@AnantapurStudyBuddy"
-BOT_TOKEN = "8557258154:AAHNcziTdnx2IeM7IdRnZXRwS8kSoJkL8ZY"
 
-message = """📚 *Anantapur Study Buddy - Daily Current Affairs*
-📅 26-09-2026
+def get_news():
+    today = datetime.date.today().strftime("%d-%m-%Y")
+    msg = f"""📚 *Anantapur Study Buddy - Daily Current Affairs*
+📅 {today}
 
-1️⃣ National: New Education Policy update
-2️⃣ AP: Amaravati works approved  
-3️⃣ Sports: India wins match
-4️⃣ Economy: RBI guidelines
-5️⃣ Science: ISRO new mission
+1️⃣ *National:* ISRO to launch new satellite today - Boost to India space mission
 
-💡 Quiz: AP Governor evaru?
-Ans: S. Abdul Nazeer
+2️⃣ *State AP:* AP Govt announces new jobs notification - 1000+ posts
 
-Daily 7 AM ki vastundi! Share cheyandi!
-#APPSC #CurrentAffairs"""
+3️⃣ *Sports:* Indian cricket team wins - Anantapur youth inspired!
 
-url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-data = {"chat_id": CHANNEL, "text": message, "parse_mode": "Markdown"}
-r = requests.post(url, data=data)
-print(r.text)
-print("Sent!")
+4️⃣ *Science:* New AI technology launched in India
+
+🔥 *Daily 7 AM ki Current Affairs vastayi - Share to friends!*"""
+    return msg
+
+def send():
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    data = {"chat_id": CHANNEL, "text": get_news(), "parse_mode": "Markdown"}
+    r = requests.post(url, data=data)
+    print(r.text)
+
+if __name__ == "__main__":
+    send()
